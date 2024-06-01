@@ -23,6 +23,7 @@ class VideoCamera(object):
         imgOutput = img.copy()
         hands, img = detector.findHands(img)
         hands, img = detector.findHands(img)
+
         if hands:
             hand = hands[0]
             x, y, w, h = hand['bbox']
@@ -51,10 +52,10 @@ class VideoCamera(object):
                 prediction, index = classifier.getPrediction(imgWhite, draw=False)
 
             cv2.rectangle(imgOutput, (x - offset, y - offset - 50), (x - offset + 90, y - offset + 50 - 50),
-                          (255, 0, 255), cv2.FILLED)
-            cv2.putText(imgOutput, labels[index], (x - 20, y - 60), cv2.FONT_HERSHEY_COMPLEX, 1.7, (255, 255, 255),
+                          (0, 255, 0), cv2.FILLED)
+            cv2.putText(imgOutput, labels[index], (x - 20, y - 60), cv2.FONT_HERSHEY_TRIPLEX, 1.7, (255, 255, 255),
                         2)
-            cv2.rectangle(imgOutput, (x - offset, y - offset), (x + w + offset, y + h + offset), (255, 0, 255), 1)
+            cv2.rectangle(imgOutput, (x - offset, y - offset), (x + w + offset, y + h + offset), (0, 255, 0), 1)
 
 
         ret, jpeg = cv2.imencode('.jpg', imgOutput)
